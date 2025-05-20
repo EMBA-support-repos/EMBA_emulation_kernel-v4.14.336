@@ -29,7 +29,9 @@ Create the kernel build output directory:
 
 Copy the configuration file into the build directory:
 
-`cp config.mipsel build/mipsel/.config`
+`cp config.mipsel ./build/mipsel/.config`
+
+`make ARCH=mips olddefconfig O=./build/mipsel`
 
 Assuming that the appropriate cross-compiler is installed in `/opt/cross/mipsel-linux-musl`, execute:
 

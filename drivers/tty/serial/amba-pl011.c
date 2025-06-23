@@ -59,12 +59,13 @@
 #include <linux/sizes.h>
 #include <linux/io.h>
 #include <linux/acpi.h>
+#include <linux/major.h>
 
 #include "amba-pl011.h"
 
 #define UART_NR			14
 
-#define SERIAL_AMBA_MAJOR	204
+#define SERIAL_AMBA_MAJOR	TTY_MAJOR
 #define SERIAL_AMBA_MINOR	64
 #define SERIAL_AMBA_NR		UART_NR
 
@@ -2400,7 +2401,7 @@ static int pl011_console_match(struct console *co, char *name, int idx,
 
 static struct uart_driver amba_reg;
 static struct console amba_console = {
-	.name		= "ttyAMA",
+	.name		= "ttyS",
 	.write		= pl011_console_write,
 	.device		= uart_console_device,
 	.setup		= pl011_console_setup,
@@ -2500,11 +2501,11 @@ EARLYCON_DECLARE(qdf2400_e44, qdf2400_e44_early_console_setup);
 
 static struct uart_driver amba_reg = {
 	.owner			= THIS_MODULE,
-	.driver_name		= "ttyAMA",
-	.dev_name		= "ttyAMA",
+	.driver_name	= "ttyS",
+	.dev_name		= "ttyS",
 	.major			= SERIAL_AMBA_MAJOR,
 	.minor			= SERIAL_AMBA_MINOR,
-	.nr			= UART_NR,
+	.nr				= UART_NR,
 	.cons			= AMBA_CONSOLE,
 };
 
